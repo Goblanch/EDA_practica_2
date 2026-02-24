@@ -6,10 +6,10 @@
 #include <stdexcept>
 #include <iostream>
 
-Solicitud::Solicitud(const int& id_producto, const std::string& fecha, const std::string& codigo, const char& estado, const double& reembolso) {
+Solicitud::Solicitud(const int& id_producto, const std::string& fecha, const char& estado, const double& reembolso) {
     this->id_producto = id_producto;
     this->fecha_solicitud = fecha;
-    this->codigo = codigo;
+    setCodigo();
     this->estado = estado;
     this->reembolso = reembolso;
 
@@ -27,8 +27,8 @@ double Solicitud::getReembolso() const {
     return reembolso;
 }
 
-void Solicitud::setCodigo(const std::string &codigo) {
-    this->codigo = codigo;
+void Solicitud::setCodigo() {
+    codigo = std::to_string(this->id_producto) + "_" + this->fecha_solicitud;
 }
 
 void Solicitud::setEstado(const char estado) {

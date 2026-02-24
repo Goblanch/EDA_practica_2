@@ -10,4 +10,5 @@ public:
     ~GestorSolicitudes() = default;
 
     void cargarSolicitudes(const std::vector<Solicitud> &solicitudes_iniciales, GenericStack<Solicitud> &stack);
+    GenericStack<Solicitud> procesarSolicitudesRechazadas(const GenericStack<Solicitud> &stack, double& totalAhorrado);
 };

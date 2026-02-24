@@ -3,7 +3,7 @@
 
 class Solicitud {
 public:
-    Solicitud(const int& id_producto, const std::string& fecha, const std::string& codigo, const char& estado, const double& reembolso);
+    Solicitud(const int& id_producto, const std::string& fecha, const char& estado, const double& reembolso);
 
     // Getters
     std::string getCodigo() const;
@@ -11,7 +11,7 @@ public:
     double getReembolso() const;
 
     // Setters
-    void setCodigo(const std::string& codigo);
+    void setCodigo();
     void setEstado(const char estado);
     void setReembolso(const double reembolso);
 

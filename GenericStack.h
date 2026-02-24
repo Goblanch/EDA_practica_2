@@ -20,6 +20,46 @@ private:
 
 public:
     GenericStack() : topNode(nullptr), count(0) {}
+    GenericStack(const GenericStack& other) : topNode(nullptr), count(0) {
+        if (other.topNode == nullptr) return;
+
+        // Primero copiamos a una pila auxiliar para conservar orden
+        GenericStack<T> temp;
+        Node* current = other.topNode;
+
+        // Recorremos other de cima a base
+        while (current != nullptr) {
+            temp.push(current->data); // queda invertido
+            current = current->next;
+        }
+
+        // Volvemos a invertir para dejar el mismo orden que other
+        while (!temp.empty()) {
+            push(temp.top());
+            temp.pop();
+        }
+    }
+
+    // Operador de asignación por copia (deep copy)
+    GenericStack& operator=(const GenericStack& other) {
+        if (this != &other) {
+            clear();
+
+            GenericStack<T> temp;
+            Node* current = other.topNode;
+
+            while (current != nullptr) {
+                temp.push(current->data);
+                current = current->next;
+            }
+
+            while (!temp.empty()) {
+                push(temp.top());
+                temp.pop();
+            }
+        }
+        return *this;
+    }
     ~GenericStack() {
         clear();
     }
@@ -64,6 +104,7 @@ public:
         }
 
         Node* current = topNode;
+        std::cout << "Escaneando pila\n";
         std::cout << "=== Contenido de la pila (cima -> base) ===\n";
 
         while (current != nullptr) {
