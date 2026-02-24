@@ -57,4 +57,21 @@ public:
         }
     }
 
+    void print() {
+        if (empty()) {
+            std::cout << "[Pila vacia]\n";
+            return;
+        }
+
+        Node* current = topNode;
+        std::cout << "=== Contenido de la pila (cima -> base) ===\n";
+
+        while (current != nullptr) {
+            current->data.mostrar();
+            current = current->next;
+        }
+
+        std::cout << "=========================================\n";
+    }
+
 };
